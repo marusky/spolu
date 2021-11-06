@@ -11,4 +11,6 @@
 </p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Back', teams_path %> |
+<%= link_to 'Invite to team',  new_user_invitation_path(team_id: @team.id)%>
+
