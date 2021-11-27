@@ -35,3 +35,10 @@
 <%= link_to 'New Team', new_team_path %>
 <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
 
+<h1>Invited to teams:</h1>
+<p>
+  <% current_user.joinable_teams.each do |team| %>
+    <%= team.name %> accept<br/>
+  <% end %>
+</p>
+

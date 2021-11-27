@@ -1,21 +1,31 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<h2>Invitation to <%= @team.name %></h2>
 
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%#= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
 
-  <% resource.class.invite_key_fields.each do |field| -%>
-    <div class="field">
-      <%= f.label field %><br />
-      <%= f.text_field field %>
-    </div>
-  <% end -%>
+  <%# resource.class.invite_key_fields.each do |field| -%>
+<!--    <div class="field">-->
+<!--      <%#= f.label field %><br />-->
+      <%#= f.text_field field %>
+<!--    </div>-->
+  <%# end -%>
+
+    <%#= f.hidden_field resource.team_ids, value: [@team.id] %>
+
+
+
+<!--  <div class="actions">-->
+    <%#= f.submit t("devise.invitations.new.submit_button") %>
+<!--  </div>-->
+<%# end %>
+
+<%= form_with url: '/invitation', method: :post do |f| %>
+  <%= f.hidden_field :team_id, value: [@team.id] %>
   <div class="field">
-    <%= f.label 'team_ids' %><br />
-    <%= f.text_field resource.team_ids, value: @team.name %>
+    <%= f.label :invite_by_email %>
+    <%= f.email_field :email %>
   </div>
-
-
-  <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
-  </div>
+  <%= f.submit 'Submit' %>
 <% end %>
+
+

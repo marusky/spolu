@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :teams
+  has_many :team_invitations
+  has_many :joinable_teams, through: :team_invitations, source: :team
 
   def name
     "#{first_name} #{last_name}"
