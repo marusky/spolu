@@ -1,0 +1,10 @@
+<h1><%= @team.name %></h1>
+
+<% @team.notes.each do |note| %>
+  <p>
+    <h3><%= note.title %></h3>
+    <%= note.body %>
+    <hr>
+    <%= note.creator.name %>
+  </p>
+<% end %>

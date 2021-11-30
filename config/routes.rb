@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :notes
+  authenticated :user do
+    root 'teams#home_team', as: :authenticated_root
+  end
+  root 'pages#home'
   resources :teams
   devise_for :users, path: '', path_names: {
     sign_up: 'register',
@@ -6,8 +11,4 @@ Rails.application.routes.draw do
     sign_out: 'logout'
   }, controllers: {
     invitations: 'invitations'}
-  authenticated :user do
-    root to: 'teams#index', as: :authenticated_root
-  end
-  root 'pages#home'
 end

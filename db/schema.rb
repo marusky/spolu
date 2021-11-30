@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_123048) do
+ActiveRecord::Schema.define(version: 2021_11_30_141427) do
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "team_id"
+    t.integer "creator_id"
+    t.integer "updater_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "team_invitations", id: false, force: :cascade do |t|
     t.integer "team_id"
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_11_27_123048) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "home_team"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"

@@ -1,9 +1,16 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  # before_action :show_favourite_team, only: [:index]
   before_action :authenticate_user!, only: [:index]
 
   def index
     @teams = current_user.teams
+  end
+
+  def home_team
+    return redirect_to teams_path if current_user.home_team.nil?
+
+    @team = Team.find(current_user.home_team)
   end
 
   def show
@@ -61,5 +68,9 @@ class TeamsController < ApplicationController
 
   def team_params
     params.require(:team).permit(:name, :description)
+  end
+
+  def show_favourite_team
+    redirect_to team_path(6) if true
   end
 end
