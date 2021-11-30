@@ -11,11 +11,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def can_invite_to_team?(team_id)
+  def can_manage_team?(team_id)
     if Team.exists?(team_id)
       Team.find(team_id).members.include? self
     else
       false
     end
   end
+
 end
