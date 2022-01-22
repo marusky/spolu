@@ -14,12 +14,17 @@
  *= require_self
  */
 
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('SF-Pro-Display-Regular.otf');
+}
+
 body {
     margin: 100px 25px 0 25px;
     color: #E4E4E4;
     background: #171717;
 
-    font-family: "SF Pro Display", serif;
+    font-family: "SF Pro Display", sans-serif;
 }
 
 * {

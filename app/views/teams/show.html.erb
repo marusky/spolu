@@ -4,56 +4,70 @@
   <h1><%= @team.name %></h1>
 </header>
 
-<%= render 'teams/partials/event', team: @team %>
-
-
-<p>
-  <% @team.events.each do |event| %>
-    <%= event.name %>
-  <% end %>
-</p>
-
-
-
-<p>
-  <strong>Description:</strong>
-  <%= @team.description %>
-</p>
-
-<p>
-  <% @team.members.each do |member| %>
-    <%= member.name %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Invited members:</strong>
-  <% @team.invited_users.each do |user| %>
-    <%= user.first_name || user.email %>
-  <% end %>
-
-</p>
-
-<h3>Meetings:</h3>
-<% @team.meetings.each do |meeting| %>
-  <%= meeting.name %> <br/>
+<% if @team.events.size > 0 %>
+  <%= render 'teams/partials/event', event: @team.events.first %>
 <% end %>
-<%= @team.meetings.length %>
 
-<p>
-  <% @team.notes.each do |note| %>
-    <p>
-      <h3><%= note.title %></h3>
-      <%= note.body %>
-      <hr>
-      <%= note.creator.name %>
-    </p>
-  <% end %>
-</p>
+<% if @team.superteam.nil? %>
+  <%= render 'teams/partials/teams', subteams: @team.subteams %>
+<% end %>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %> |
-<%= link_to 'Invite to team',  new_user_invitation_path(team_id: @team.id)%>
+<%#= render(ExampleComponent.new(title: "fdmy feofdsfsi"))%>
 
-<br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+Welcome to the club.
+
+
+<!--<p>-->
+  <%# @team.events.each do |event| %>
+    <%#= event.name %>
+  <%# end %>
+<!--</p>-->
+
+<!--<h1 class="thisguy" onclick="writeClicked()">this guy</h1>-->
+
+
+
+<!--<p>-->
+<!--  <strong>Description:</strong>-->
+  <%#= @team.description %>
+<!--</p>-->
+
+<!--<p>-->
+  <%# @team.members.each do |member| %>
+    <%#= member.name %>
+  <%# end %>
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Invited members:</strong>-->
+  <%# @team.invited_users.each do |user| %>
+    <%#= user.first_name || user.email %>
+  <%# end %>
+
+<!--</p>-->
+
+<!--<h3>Meetings:</h3>-->
+<%# @team.meetings.each do |meeting| %>
+<!--  <%#= meeting.name %> <br/>-->
+<%# end %>
+<%#= @team.meetings.length %>
+
+<!--<p>-->
+  <%# @team.notes.each do |note| %>
+<!--    <p>-->
+<!--      <h3><%#= note.title %></h3>-->
+      <%#= note.body %>
+<!--      <hr>-->
+      <%#= note.creator.name %>
+<!--    </p>-->
+  <%# end %>
+<!--</p>-->
+
+<!--<%#= link_to 'Edit', edit_team_path(@team) %> |-->
+<!--<%#= link_to 'Back', teams_path %> |-->
+<%#= link_to 'Invite to team',  new_user_invitation_path(team_id: @team.id)%>
+
+<!--<br>-->
+<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+
+<%= javascript_pack_tag 'teams', team: @team %>

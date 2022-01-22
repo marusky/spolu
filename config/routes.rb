@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     sign_out: 'logout'
   }, controllers: {
     invitations: 'invitations'}
+
+  get '/show_teams', to: 'teams#show_teams'
 end

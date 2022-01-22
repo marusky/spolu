@@ -6,4 +6,7 @@ class Team < ApplicationRecord
   has_many :notes
   has_many :meetings
   has_many :events
+
+  has_many :subteams, class_name: 'Team', foreign_key: 'superteam_id'
+  belongs_to :superteam, class_name: 'Team', optional: true
 end

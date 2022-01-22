@@ -1,0 +1,27 @@
+<div class="teams-container">
+<!--  <div class="row">-->
+    <% subteams.first(2).each do |team| %>
+      <%= render 'teams/partials/team', team: team %>
+    <% end %>
+
+    <div class="team card btn-chevron">
+      <svg width="36" height="22" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3.01118L16.3333 18.2133C17.2549 19.2641 18.7451 19.2641 19.6667 18.2022L33 3" stroke="url(#paint0_linear_71_650)" stroke-width="5" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="paint0_linear_71_650" x1="3" y1="-2" x2="27.5" y2="19" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0F27FF"/>
+            <stop offset="1" stop-color="#4098FF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+<!--  </div>-->
+
+  <% subteams[2..].each_slice(3) do |slice| %>
+<!--      <div class="row">-->
+        <% slice.each do |team| %>
+          <%= render 'teams/partials/team', team: team %>
+        <% end %>
+<!--      </div>-->
+  <% end %>
+</div>

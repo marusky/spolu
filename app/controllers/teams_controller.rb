@@ -14,6 +14,12 @@ class TeamsController < ApplicationController
     render :show
   end
 
+  def show_teams
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show
     return redirect_to root_path, notice: 'Nemozes obzerat tento tim!' unless current_user.can_manage_team?(params[:id])
 

@@ -46,11 +46,61 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+    }
+  }
 
+  &.team {
+    position: relative;
+    padding: 15px 10px;
+    width: 25vw;
+    height: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    color: #E4E4E4;
 
+    .images {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-20%);
+      font-weight: lighter;
+    }
+  }
 
+  &.btn-chevron {
+    display: flex;
+    width: 25vw;
+    height: 25vw;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      transform: rotate(-90deg);
+      transition: transform 0.3s ease;
     }
 
-
+    &.open {
+      svg {
+        transform: rotate(0deg);
+      }
+    }
   }
+}
+
+.teams-container {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 20px 3.8%;
+  overflow: hidden;
+  margin: 20px -3%;
+  padding: 10px 3%;
+  height: 80px;
+  transition: all .7s;
+}
+
+a {
+  text-decoration: none;
+  color: #E4E4E4;
 }

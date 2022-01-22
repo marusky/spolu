@@ -1,5 +1,3 @@
-<% event = @team.events.first %>
-
 <% if event.days_until >= 10 %>
   <div class="card meeting">
     <div class="left">
@@ -22,7 +20,7 @@
       <%= event.days_until %>
     </div>
   </div>
-<% elsif event.days_until == 0 %>
+<% elsif event.days_until <= 0 %>
   <div class="card meeting">
     <div class="left">
       <span>Dnes je ten deň!</span>
