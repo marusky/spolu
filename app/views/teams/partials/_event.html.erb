@@ -1,0 +1,36 @@
+<% event = @team.events.first %>
+
+<% if event.days_until >= 10 %>
+  <div class="card meeting">
+    <div class="left">
+      <span>Odpočítavanie:</span>
+      <h2><%= event.name %></h2>
+      <span>Už len <%= event.days_until %> dní, juchú!</span>
+    </div>
+    <div class="right days">
+      <%= event.days_until %>
+    </div>
+  </div>
+<% elsif event.days_until >= 1 %>
+  <div class="card meeting">
+    <div class="left">
+      <span>Už iba...</span>
+      <h2><%= event.days_until %>-krát sa vyspíš</h2>
+      <span>...a je tu <%= event.name %>!</span>
+    </div>
+    <div class="right days">
+      <%= event.days_until %>
+    </div>
+  </div>
+<% elsif event.days_until == 0 %>
+  <div class="card meeting">
+    <div class="left">
+      <span>Dnes je ten deň!</span>
+      <h2><%= event.name %></h2>
+      <span>začína o <%= event.start_time %>.</span>
+    </div>
+    <div class="right">
+      🎉
+    </div>
+  </div>
+<% end %>

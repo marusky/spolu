@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    margin: 100px 25px 0 25px;
+    color: #E4E4E4;
+    background: #171717;
+
+    font-family: "SF Pro Display", serif;
+}
+
+* {
+    box-sizing: border-box;
+}

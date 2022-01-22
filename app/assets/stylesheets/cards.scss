@@ -1,0 +1,56 @@
+.card {
+  background: #171717;
+  box-shadow: -3px 3px 6px rgba(16, 16, 16, 0.2), 3px -3px 6px rgba(16, 16, 16, 0.2), -3px -3px 6px rgba(30, 30, 30, 0.9), 3px 3px 8px rgba(16, 16, 16, 0.9), inset 1px 1px 2px rgba(30, 30, 30, 0.3), inset -1px -1px 2px rgba(16, 16, 16, 0.5);
+  border-radius: 17px;
+  padding: 15px 20px;
+
+  &.meeting {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left {
+      h2 {
+        margin: 8px 0 11px 0;
+
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 100%;
+
+        letter-spacing: -0.02em;
+      }
+
+      span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 100%;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    .right {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 45px;
+      line-height: 100%;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      letter-spacing: -0.02em;
+
+      &.days {
+        background: -webkit-linear-gradient(36deg, rgba(52, 69, 225, 1), rgba(64, 186, 255, 1));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+
+
+    }
+
+
+  }
+}

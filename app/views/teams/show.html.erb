@@ -1,13 +1,29 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>-->
+
+<header class="home-team">
+  <h1><%= @team.name %></h1>
+</header>
+
+<%= render 'teams/partials/event', team: @team %>
+
 
 <p>
-  <strong>Name:</strong>
-  <%= @team.name %>
+  <% @team.events.each do |event| %>
+    <%= event.name %>
+  <% end %>
 </p>
+
+
 
 <p>
   <strong>Description:</strong>
   <%= @team.description %>
+</p>
+
+<p>
+  <% @team.members.each do |member| %>
+    <%= member.name %>
+  <% end %>
 </p>
 
 <p>
@@ -18,7 +34,26 @@
 
 </p>
 
+<h3>Meetings:</h3>
+<% @team.meetings.each do |meeting| %>
+  <%= meeting.name %> <br/>
+<% end %>
+<%= @team.meetings.length %>
+
+<p>
+  <% @team.notes.each do |note| %>
+    <p>
+      <h3><%= note.title %></h3>
+      <%= note.body %>
+      <hr>
+      <%= note.creator.name %>
+    </p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %> |
 <%= link_to 'Invite to team',  new_user_invitation_path(team_id: @team.id)%>
 
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

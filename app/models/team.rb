@@ -4,4 +4,6 @@ class Team < ApplicationRecord
   has_many :team_invitations
   has_many :invited_users, through: :team_invitations, source: :user
   has_many :notes
+  has_many :meetings
+  has_many :events
 end

@@ -11,10 +11,16 @@ class TeamsController < ApplicationController
     return redirect_to teams_path if current_user.home_team.nil?
 
     @team = Team.find(current_user.home_team)
+    render :show
   end
 
   def show
     return redirect_to root_path, notice: 'Nemozes obzerat tento tim!' unless current_user.can_manage_team?(params[:id])
+
+    if current_user.home_team.nil?
+      current_user.home_team = params[:id]
+      current_user.save!
+    end
   end
 
   def new

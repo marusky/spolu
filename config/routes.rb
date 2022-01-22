@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :events
+  resources :meetings
   resources :notes
   authenticated :user do
     root 'teams#home_team', as: :authenticated_root
