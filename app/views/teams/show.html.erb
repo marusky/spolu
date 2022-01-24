@@ -1,8 +1,6 @@
 <!--<p id="notice"><%#= notice %></p>-->
 
-<header class="home-team">
-  <h1><%= @team.name %></h1>
-</header>
+<%= render 'teams/partials/header', team: @team %>
 
 <% if @team.events.size > 0 %>
   <%= render 'teams/partials/event', event: @team.events.first %>

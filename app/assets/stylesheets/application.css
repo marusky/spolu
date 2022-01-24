@@ -17,16 +17,32 @@
 @font-face {
     font-family: 'SF Pro Display';
     src: url('SF-Pro-Display-Regular.otf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('SF-Pro-Display-Bold.otf');
+    font-weight: bold;
 }
 
 body {
-    margin: 100px 25px 0 25px;
-    color: #E4E4E4;
-    background: #171717;
+    margin: 110px 25px 0 25px;
+    /*color: #E4E4E4;*/
+    /*background: #171717;*/
+    color: #111111;
+    background: #DFDFDF;
 
     font-family: "SF Pro Display", sans-serif;
+    font-weight: normal;
+    letter-spacing: -0.02em;
 }
 
 * {
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
 }
