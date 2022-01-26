@@ -9,4 +9,9 @@ class Team < ApplicationRecord
 
   has_many :subteams, class_name: 'Team', foreign_key: 'superteam_id'
   belongs_to :superteam, class_name: 'Team', optional: true
+
+  def next_meeting
+    meetings.where('date > ?', DateTime.now - 30.minutes).order(date: :asc).first
+  end
 end
+

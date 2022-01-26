@@ -6,13 +6,44 @@
   <%= render 'teams/partials/event', event: @team.events.first %>
 <% end %>
 
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
+<% if @team.next_meeting.present? %>
+  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+<% end %>
+
 <% if @team.superteam.nil? %>
   <%= render 'teams/partials/teams', subteams: @team.subteams %>
 <% end %>
-
 <%#= render(ExampleComponent.new(title: "fdmy feofdsfsi"))%>
 
-Welcome to the club.
+<!--Welcome to the club.-->
 
 
 <!--<p>-->

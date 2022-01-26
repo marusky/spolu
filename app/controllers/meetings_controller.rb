@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: %i[ show edit update destroy ]
+  before_action :set_meeting, only: %i[ show edit update destroy attend show_attendance]
 
   # GET /meetings or /meetings.json
   def index
@@ -56,14 +56,35 @@ class MeetingsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  def attend
+    attendance = users_attendance
+    attendance.update(answer: params[:answer])
 
-    # Only allow a list of trusted parameters through.
-    def meeting_params
-      params.require(:meeting).permit(:date, :time, :place)
+    if attendance.save!
+      respond_to do |format|
+        format.js
+      end
     end
+  end
+
+  def show_attendance
+    session[:attendance_shown] = session[:attendance_shown].nil? || !session[:attendance_shown]
+    respond_to { |format| format.js }
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def meeting_params
+    params.require(:meeting).permit(:date, :time, :place)
+  end
+
+  def users_attendance
+    Attendance.find_by(user: current_user, meeting: @meeting) || Attendance.new(user: current_user, meeting: @meeting, answer: params[:answer])
+  end
 end

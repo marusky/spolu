@@ -1,0 +1,48 @@
+<% if @meeting.present? %>
+  <% meeting = @meeting %>
+<% end %>
+
+<%= link_to show_attendance_path(id: meeting.id), remote: true do %>
+  <div class="card meeting">
+    <div class="row">
+      <div class="left">
+        <span>Najbližší meeting:</span>
+        <h2><%= meeting.display_date %></h2>
+        <span><%= meeting.place %></span>
+        <span><%= meeting.display_time %></span>
+      </div>
+      <div class="right colour">
+        <% if current_user.attends(meeting) %>
+          <%= link_to attend_path(id: meeting.id, answer: false), remote: true do %>
+            <svg class="meeting-yes" width="41" height="34" viewBox="0 0 41 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.9938 25.5149C15.2748 26.3849 13.9788 26.488 13.1313 25.7426L4.24086 17.9231C3.48557 17.2588 2.35443 17.2588 1.59914 17.9231L0.707474 18.7074C-0.198047 19.5038 -0.198048 20.9145 0.707473 21.7109L13.1627 32.6657C13.9981 33.4005 15.2727 33.3122 15.9988 32.4693L39.708 4.94754C40.4237 4.11676 40.3369 2.8646 39.5135 2.14041L38.6286 1.3621C37.7811 0.616704 36.4851 0.719799 35.7661 1.58981L15.9938 25.5149Z" fill="url(#paint0_linear_17_224)"/>
+              <defs>
+                <linearGradient id="paint0_linear_17_224" x1="20" y1="0" x2="46.4265" y2="36.9293" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.208333" stop-color="#34E1A3"/>
+                  <stop offset="1" stop-color="#3445E1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          <% end %>
+        <% elsif current_user.attends(meeting) == false %>
+          <%= link_to attend_path(id: meeting.id, answer: nil), remote: true do %>
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M34.2929 4.23211C34.6834 3.84158 34.6834 3.20842 34.2929 2.81789L32.1821 0.707106C31.7916 0.316582 31.1584 0.316583 30.7679 0.707107L18.2071 13.2679C17.8166 13.6584 17.1834 13.6584 16.7929 13.2679L4.23211 0.707107C3.84158 0.316583 3.20842 0.316583 2.81789 0.707107L0.707106 2.81789C0.316582 3.20842 0.316583 3.84158 0.707107 4.23211L13.2679 16.7929C13.6584 17.1834 13.6584 17.8166 13.2679 18.2071L0.707107 30.7679C0.316583 31.1584 0.316583 31.7916 0.707107 32.1821L2.81789 34.2929C3.20842 34.6834 3.84158 34.6834 4.23211 34.2929L16.7929 21.7321C17.1834 21.3416 17.8166 21.3416 18.2071 21.7321L30.7679 34.2929C31.1584 34.6834 31.7916 34.6834 32.1821 34.2929L34.2929 32.1821C34.6834 31.7916 34.6834 31.1584 34.2929 30.7679L21.7321 18.2071C21.3416 17.8166 21.3416 17.1834 21.7321 16.7929L34.2929 4.23211Z" fill="url(#paint0_linear_45_249)"/>
+              <defs>
+                <linearGradient id="paint0_linear_45_249" x1="19.6212" y1="10.0758" x2="17.5" y2="35" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.229167" stop-color="#F01B68"/>
+                  <stop offset="1" stop-color="#E78716"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          <% end %>
+        <% else %>
+          <%= link_to attend_path(id: meeting.id, answer: true), remote: true do %>
+            ?
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

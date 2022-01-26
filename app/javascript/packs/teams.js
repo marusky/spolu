@@ -1,7 +1,6 @@
 window.addEventListener('turbolinks:load', () => {
 
     const teamsContainer = document.querySelector('.teams-container')
-    const width = teamsContainer.getBoundingClientRect().width
 
     const btnChevron = document.querySelector('.btn-chevron')
     const rowsCount = Math.ceil(teamsContainer.children.length / 3)

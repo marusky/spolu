@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 // import './teams.js'
+// import './special.js.erb'
 
 Rails.start()
 Turbolinks.start()

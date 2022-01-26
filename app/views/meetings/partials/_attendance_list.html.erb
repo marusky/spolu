@@ -1,0 +1,3 @@
+<% @meeting.attendances.each do |attendance| %>
+  <%= attendance.user.name %> <%= attendance.answer %> |
+<% end %>

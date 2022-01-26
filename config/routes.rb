@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     invitations: 'invitations'}
 
   get '/show_teams', to: 'teams#show_teams'
+  get '/attend', to: 'meetings#attend'
+  get '/show_attendance', to: 'meetings#show_attendance'
 end

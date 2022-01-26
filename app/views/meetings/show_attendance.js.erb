@@ -1,0 +1,27 @@
+var meeting = document.querySelector('.card.meeting')
+console.log(<%= @show %>)
+
+<% if session[:attendance_shown] %>
+  var attendanceList = document.createElement('div')
+  attendanceList.className = 'attendance-list'
+  attendanceList.innerHTML = "<%= j render 'meetings/partials/attendance_list'%>"
+
+  var height = meeting.getBoundingClientRect().height
+  meeting.style.height = `${height}px`
+
+  setTimeout(() => {
+      meeting.style.height = `${height + 30}px`
+  }, 50)
+
+  setTimeout(() => {
+      attendanceList.style.opacity = '1';
+  }, 300)
+
+  meeting.appendChild(attendanceList)
+<% else %>
+  attendanceList = document.querySelector('.attendance-list')
+  meeting.style.height = `${height}px`
+  attendanceList.style.opacity = '0';
+
+  setTimeout(() => attendanceList.remove(), 500)
+<% end %>

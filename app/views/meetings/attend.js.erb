@@ -1,0 +1,5 @@
+var oldMeeting = document.querySelector('.card.meeting')
+
+var newMeeting = document.createElement('div');
+newMeeting.innerHTML = '<%= j render 'teams/partials/meeting' %>';
+oldMeeting.parentNode.replaceChild(newMeeting, oldMeeting);

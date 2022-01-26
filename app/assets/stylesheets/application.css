@@ -46,3 +46,21 @@ a {
     text-decoration: none;
     color: unset;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+navbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 111px;
+    background: rgba(73, 73, 73, 0.168);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+
+    border-radius: 46px 46px 0 0;
+}

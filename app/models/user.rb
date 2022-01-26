@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :joinable_teams, through: :team_invitations, source: :team
   has_many :notes, foreign_key: 'creator_id'
 
+  has_and_belongs_to_many :meetings
+  has_many :attendances
+
   def name
     "#{first_name} #{last_name}"
   end
@@ -18,6 +21,10 @@ class User < ApplicationRecord
     else
       false
     end
+  end
+
+  def attends(meeting)
+    Attendance.find_by(user: self, meeting: meeting)&.answer
   end
 
 end
