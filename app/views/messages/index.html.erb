@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Messages</h1>
+
+<%= render 'form', message: @message %>
+
+<div class="messages">
+  <% @messages.each do |message| %>
+      <%= message.content %> <br>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Message', new_message_path %>

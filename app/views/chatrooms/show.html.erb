@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+<div class="chatroom-<%= @chatroom.id %>">
+  <% @chatroom.messages.each do |message| %>
+    <%= message.content %><br/>
+  <% end %>
+</div>
+<%= form_with model: @message, method: :post do |form| %>
+  <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
+  <%= form.text_field :content  %>
+  <%= form.submit 'Send' %>
+<% end %>
+
+<%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
+<%= link_to 'Back', chatrooms_path %>

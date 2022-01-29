@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :chatrooms
+  resources :messages
   resources :events
   resources :meetings
   resources :notes
@@ -17,4 +19,6 @@ Rails.application.routes.draw do
   get '/show_teams', to: 'teams#show_teams'
   get '/attend', to: 'meetings#attend'
   get '/show_attendance', to: 'meetings#show_attendance'
+
+  mount ActionCable.server, at: '/cable'
 end

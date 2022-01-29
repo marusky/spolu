@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_135412) do
+ActiveRecord::Schema.define(version: 2022_01_29_114933) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 2022_01_24_135412) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meeting_id"], name: "index_attendances_on_meeting_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.integer "team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -39,6 +45,14 @@ ActiveRecord::Schema.define(version: 2022_01_24_135412) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_meetings_on_team_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "chatroom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notes", force: :cascade do |t|

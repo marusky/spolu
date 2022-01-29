@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :meetings
   has_many :attendances
 
+  has_many :messages
+
   def name
     "#{first_name} #{last_name}"
   end
