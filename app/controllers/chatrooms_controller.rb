@@ -30,12 +30,12 @@ class ChatroomsController < ApplicationController
 
     if data[0] == 'Team'
       @chatroom.team_id = data[1]
+      existing_chatroom = Chatroom.find_by(team_id: data[1])
     else
       @chatroom.users << [current_user, User.find(data[1])]
+      existing_chatroom = Chatroom.joins(:users).find_by(users: [current_user, User.find(data[1])])
     end
 
-    # FIXME n+1 queries?
-    existing_chatroom = Chatroom.joins(:users).find_by(users: [User.first, User.second])
 
     if existing_chatroom
       respond_to do |format|

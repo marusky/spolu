@@ -12,7 +12,7 @@
   <tbody>
     <% @chatrooms.each do |chatroom| %>
       <tr>
-        <td><%= link_to chatroom.team&.name || chatroom.users.second&.name, chatroom %></td>
+        <td><%= link_to chatroom.name(current_user), chatroom %></td>
         <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
         <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

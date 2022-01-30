@@ -25,7 +25,9 @@ class MessagesController < ApplicationController
     @message = current_user.messages.build(message_params)
 
     if @message.save
-      ActionCable.server.broadcast('chatroom_channel', { content: @message.content, chatroom_id: @message.chatroom_id })
+      ActionCable.server.broadcast('chatroom_channel', { content: @message.content,
+                                                         chatroom_id: @message.chatroom_id,
+                                                         user_name: current_user.name })
     end
 
     # respond_to do |format|

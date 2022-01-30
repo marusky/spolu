@@ -10,7 +10,9 @@ consumer.subscriptions.create("ChatroomChannel", {
   },
 
   received(data) {
-    document.querySelector(`.chatroom-${data.chatroom_id}`).append(data.content)
+    var messageDiv = document.createElement('div')
+    messageDiv.innerHTML = `<strong>${data.user_name}:</strong> ${data.content}`
+    document.querySelector(`.chatroom-${data.chatroom_id}`).append(messageDiv)
     // Called when there's incoming data on the websocket for this channel
   }
 });
