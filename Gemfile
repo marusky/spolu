@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.8'
 gem 'devise_invitable', '~> 2.0', '>= 2.0.5'
 gem 'haml', '~> 5.2', '>= 5.2.2'
-gem 'view_component'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -12,6 +12,13 @@
   <% end %>
 
   <div class="actions">
+    <%= form.select :send_to, chattable.map{ |c| [c.name, "#{c.class.name}, #{c.id}"] } %>
     <%= form.submit %>
   </div>
+
+  <% ActiveAdmin.register Product do%>
+  form do |f|
+  f.input(:category, as: :searchable_select)
+  end
+  end
 <% end %>

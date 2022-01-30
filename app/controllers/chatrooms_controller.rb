@@ -3,7 +3,9 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms or /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.includes(:users, :team).all
+    @chatroom = Chatroom.new
+    @chattable = Team.find(current_user.home_team).chattable(current_user)
   end
 
   # GET /chatrooms/1 or /chatrooms/1.json
@@ -22,15 +24,30 @@ class ChatroomsController < ApplicationController
 
   # POST /chatrooms or /chatrooms.json
   def create
-    @chatroom = Chatroom.new(chatroom_params)
+    @chatroom = Chatroom.new
 
-    respond_to do |format|
-      if @chatroom.save
-        format.html { redirect_to @chatroom, notice: "Chatroom was successfully created." }
-        format.json { render :show, status: :created, location: @chatroom }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+    data = chatroom_params[:send_to].split(', ')
+
+    if data[0] == 'Team'
+      @chatroom.team_id = data[1]
+    else
+      @chatroom.users << [current_user, User.find(data[1])]
+    end
+
+    # FIXME n+1 queries?
+    existing_chatroom = Chatroom.joins(:users).find_by(users: [User.first, User.second])
+
+    if existing_chatroom
+      respond_to do |format|
+        format.html { redirect_to existing_chatroom }
+      end
+    else
+      respond_to do |format|
+        if @chatroom.save
+          format.html { redirect_to @chatroom, notice: "Chatroom was successfully created." }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -65,6 +82,6 @@ class ChatroomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chatroom_params
-      params.fetch(:chatroom, {})
+      params.require(:chatroom).permit(:send_to)
     end
 end

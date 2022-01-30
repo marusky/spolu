@@ -13,5 +13,9 @@ class Team < ApplicationRecord
   def next_meeting
     meetings.where('date > ?', DateTime.now - 30.minutes).order(date: :asc).first
   end
+
+  def chattable(current_user)
+    members - [current_user] + subteams + [self]
+  end
 end
 

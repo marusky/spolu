@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :messages
 
+  has_and_belongs_to_many :chatrooms
   def name
     "#{first_name} #{last_name}"
   end
