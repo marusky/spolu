@@ -13,6 +13,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+    @teams = Team.find(current_user.home_team).all_teams
   end
 
   # GET /meetings/1/edit
@@ -25,7 +26,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to @meeting, notice: "Meeting was successfully created." }
+        format.html { redirect_to root_path, notice: "Meeting was successfully created." }
         format.json { render :show, status: :created, location: @meeting }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -81,7 +82,7 @@ class MeetingsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def meeting_params
-    params.require(:meeting).permit(:date, :time, :place)
+    params.require(:meeting).permit(:name, :date, :time, :place, :team_id)
   end
 
   def users_attendance

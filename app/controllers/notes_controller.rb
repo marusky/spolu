@@ -13,23 +13,24 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @teams = Team.find(current_user.home_team).all_teams
   end
 
   # GET /notes/1/edit
   def edit
+    @teams = Team.find(current_user.home_team).all_teams
   end
 
   # POST /notes or /notes.json
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.build(note_params)
+    # byebug
 
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: "Note was successfully created." }
-        format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +40,8 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to @note, notice: "Note was successfully updated." }
-        format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,19 +50,18 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: "Note was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to @note.team, notice: "Note was successfully destroyed." }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
+  def set_note
+    @note = Note.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:title, :body, :team_id, :created_by_user_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.require(:note).permit(:title, :body, :team_id)
+  end
 end

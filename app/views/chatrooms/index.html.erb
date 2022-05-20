@@ -1,28 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Chatrooms</h1>
+<header class="home-team">
+  <h1>Chat</h1>
+</header>
+<%#= render 'form', chatroom: @chatroom, chattable: @chattable %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @chatrooms.each do |chatroom| %>
-      <tr>
-        <td><%= link_to chatroom.name(current_user), chatroom %></td>
-        <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
-        <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="chat-container">
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom do %>
+      <div class="chat">
+        <div class="left">img</div>
+        <div class="right">
+          <h3><%= chatroom.name(current_user) %></h3>
+          <%= chatroom.messages.last&.user.first_name %>: <%= chatroom.messages.last&.content %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+</div>
 
-<br>
+<%= render 'layouts/navigation', current: 'Chat' %>
 
-<%= render 'form', chatroom: @chatroom, chattable: @chattable %>
-
-
-<%= link_to 'New Chatroom', new_chatroom_path %>

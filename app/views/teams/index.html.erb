@@ -38,7 +38,10 @@
 <h1>Invited to teams:</h1>
 <p>
   <% current_user.joinable_teams.each do |team| %>
-    <%= team.name %> accept<br/>
+    <%= team.name %> <%= link_to 'accept', accept_user_invitation_path %><br/>
   <% end %>
 </p>
+
+<%= render 'layouts/navigation', current: 'Teams' %>
+
 

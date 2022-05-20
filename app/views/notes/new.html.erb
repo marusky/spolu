@@ -3,3 +3,5 @@
 <%= render 'form', note: @note %>
 
 <%= link_to 'Back', notes_path %>
+
+<%= render partial: 'layouts/navigation', locals: { current: 'New' } %>

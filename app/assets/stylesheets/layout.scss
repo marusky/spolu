@@ -1,0 +1,24 @@
+.notice {
+  position: fixed;
+  z-index: 5;
+  top: -100px;
+  left: 20px;
+  right: 20px;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #1e1f21;
+  padding: 10px 20px;
+  border-radius: 25px;
+  animation: slideDown 0.5s forwards, slideUp 1s 3s forwards;
+}
+@keyframes slideDown {
+  from {top: -100px;}
+  to {top: 20px;}
+}
+
+@keyframes slideUp {
+  from {top: 20px;}
+  to {top: -100px;}
+}

@@ -14,8 +14,24 @@ class Team < ApplicationRecord
     meetings.where('date > ?', DateTime.now - 30.minutes).order(date: :asc).first
   end
 
+  def next_event
+    events.where('start > ?', DateTime.now).order(start: :asc).first
+  end
+
   def chattable(current_user)
     members - [current_user] + subteams + [self]
+  end
+
+  def all_teams
+    if self.superteam_id.nil?
+      [self] + subteams
+    else
+      [self.superteam] + self.superteam.subteams
+    end
+  end
+
+  def is_superteam?
+    superteam.nil?
   end
 end
 

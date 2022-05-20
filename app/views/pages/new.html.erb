@@ -1,0 +1,30 @@
+<header class="home-team">
+  <h1>New</h1>
+</header>
+
+<%= link_to new_meeting_path do %>
+  <div class="card new">
+    Meeting
+  </div>
+<% end %>
+
+<%= link_to new_event_path do %>
+  <div class="card new">
+    Event
+  </div>
+<% end %>
+
+<%= link_to new_team_path(superteam_id: current_user.home_team) do %>
+  <div class="card new">
+    Team
+  </div>
+<% end %>
+
+<%= link_to new_note_path do %>
+  <div class="card new">
+    Note
+  </div>
+<% end %>
+
+
+<%= render partial: 'layouts/navigation', locals: { current: 'New' } %>

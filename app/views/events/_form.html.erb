@@ -18,20 +18,23 @@
 
   <div class="field">
     <%= form.label :start %>
-    <%= form.datetime_select :start %>
+    <%= form.datetime_local_field :start %>
   </div>
 
   <div class="field">
     <%= form.label :end %>
-    <%= form.datetime_select :end %>
+    <%= form.datetime_local_field :end %>
   </div>
 
   <div class="field">
-    <%= form.label :team_id %>
-    <%= form.number_field :team_id %>
+    <%= form.label :team %>
+    <%= form.select :team_id, @teams.map{ |team| [team.name, team.id ] } %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= render partial: 'layouts/navigation', locals: { current: 'New' } %>
+

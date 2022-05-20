@@ -13,22 +13,16 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'note', placeholder: 'Title' %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.rich_text_area :body %>
   </div>
 
   <div class="field">
-    <%= form.label :team_id %>
-    <%= form.number_field :team_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :created_by_user_id %>
-    <%= form.number_field :created_by_user_id %>
+    <%= form.label :team %>
+    <%= form.select :team_id, @teams.map{ |team| [team.name, team.id] } %>
   </div>
 
   <div class="actions">
