@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @teams = Team.find(current_user.home_team).all_teams
   end
 
   # GET /events/1/edit

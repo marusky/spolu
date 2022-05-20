@@ -1,17 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<%= @chatroom.name(current_user) %>
-
-<div class="chatroom-<%= @chatroom.id %>">
-  <% @chatroom.messages.each do |message| %>
-    <%= render partial: 'chatrooms/partials/message', locals: {message: message} %>
+<header class="page">
+  <%= link_to chatrooms_path do %>
+    <svg width="14" height="27" viewBox="0 0 14 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.9916 1L1.59 12.1111C0.801943 12.8791 0.801943 14.1209 1.59838 14.8889L13 26" stroke="#E4E4E4" stroke-linecap="round"/>
+    </svg>
   <% end %>
+  <h1><%= @chatroom.name(current_user) %></h1>
+</header>
+
+
+<div class="message-container">
+  <div class="chatroom-<%= @chatroom.id %> chatroom">
+    <% @chatroom.messages.each do |message| %>
+      <%= render partial: 'chatrooms/partials/message', locals: {message: message} %>
+    <% end %>
+  </div>
+  <div class="message-type">
+    <%= form_with model: @message, method: :post do |form| %>
+      <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
+      <%= form.text_field :content, class: 'input'  %>
+      <%= form.submit 'Send', data: { disable_with: false }, class: 'btn' %>
+    <% end %>
+  </div>
 </div>
 
-<%= form_with model: @message, method: :post do |form| %>
-  <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
-  <%= form.text_field :content  %>
-  <%= form.submit 'Send', data: { disable_with: false } %>
-<% end %>
+<%= render partial: 'layouts/navigation', locals: { current: 'Chat' } %>
 
-<%= link_to 'Back', chatrooms_path %>
+

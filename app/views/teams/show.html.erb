@@ -1,59 +1,20 @@
-<!--<p id="notice"><%#= notice %></p>-->
-
 <%= render 'teams/partials/header', team: @team %>
 
-<% if @team.events.size > 0 %>
-  <%= render 'teams/partials/event', event: @team.events.first %>
-<% end %>
+<div class="cards-container">
+  <% if @team.next_meeting.present? %>
+    <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
+  <% end %>
 
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
+  <% if @team.next_event.present? %>
+    <%= render 'teams/partials/event', event: @team.next_event %>
+  <% end %>
 
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
+  <% if @team.is_superteam? %>
+    <%= render 'teams/partials/teams', subteams: @team.subteams %>
+  <% end %>
 
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.next_meeting.present? %>
-  <%= render 'teams/partials/meeting', meeting: @team.next_meeting %>
-<% end %>
-
-<% if @team.superteam.nil? %>
-  <%= render 'teams/partials/teams', subteams: @team.subteams %>
-<% end %>
-<%#= render(ExampleComponent.new(title: "fdmy feofdsfsi"))%>
-
-<!--Welcome to the club.-->
-
-
-<!--<p>-->
-  <%# @team.events.each do |event| %>
-    <%#= event.name %>
-  <%# end %>
-<!--</p>-->
-
-<!--<h1 class="thisguy" onclick="writeClicked()">this guy</h1>-->
-
+  <%= render 'teams/partials/note', notes: @team.notes.last(3) %>
+</div>
 
 
 <!--<p>-->
@@ -94,9 +55,13 @@
 
 <!--<%#= link_to 'Edit', edit_team_path(@team) %> |-->
 <!--<%#= link_to 'Back', teams_path %> |-->
-<%#= link_to 'Invite to team',  new_user_invitation_path(team_id: @team.id)%>
 
-<!--<br>-->
-<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+<%= link_to new_user_invitation_path(team_id: @team.id) do %>
+  <div class="card new special">
+    Invitation
+  </div>
+<% end %>
+
 
 <%= javascript_pack_tag 'teams', team: @team %>
+<%= render 'layouts/navigation', current: 'Home' %>

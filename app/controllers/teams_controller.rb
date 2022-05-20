@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @teams = current_user.teams
+    @teams = current_user.teams.select { |team| team.superteam_id.nil? }
   end
 
   def home_team
@@ -31,6 +31,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
+    @leaders = Team.find(current_user.home_team).members
   end
 
   def edit
@@ -79,7 +80,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :description)
+    params.require(:team).permit(:name, :description, :leader_id, :superteam_id)
   end
 
   def show_favourite_team

@@ -13,9 +13,11 @@
   </head>
 
   <body>
-    <%= notice %>
-    <%= alert %>
+    <% if notice.present? %>
+      <div class="notice">
+        <%= notice %>
+      </div>
+    <% end %>
     <%= yield %>
-    <%= render 'layouts/navigation' %>
   </body>
 </html>

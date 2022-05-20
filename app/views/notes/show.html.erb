@@ -1,24 +1,14 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
+<%= render partial: 'pages/header', locals: { resource: @note, edit: true, delete: true }%>
 
-<p>
-  <strong>Body:</strong>
+
+<div class="note-content">
   <%= @note.body %>
-</p>
+</div>
+<div class="note-info">
+  Created by: <%= @note.creator.name %>
+</div>
 
-<p>
-  <strong>Team:</strong>
-  <%= @note.team_id %>
-</p>
 
-<p>
-  <strong>Created by user:</strong>
-  <%= @note.created_by_user_id %>
-</p>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= render partial: 'layouts/navigation', locals: { current: 'Home' } %>

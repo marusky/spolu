@@ -1,3 +1,19 @@
 // Place all the styles related to the Notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.note-content {
+  font-weight: 100;
+  letter-spacing: 0.5px;
+}
+
+.note-info {
+  //font-size: small;
+  margin-top: 30px;
+}
+
+input.note {
+  //font-size: 2em;
+  //font-weight: bold;
+}

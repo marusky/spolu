@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :superteam_id, value: params[:superteam_id] %>
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -21,7 +23,13 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :leader %>
+    <%= form.select :leader_id, @leaders.map{ |leader| [leader.name, leader.id] } %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
